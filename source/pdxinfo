@@ -1,0 +1,8 @@
+name=monkeybiz
+author=Nick Scratch
+description=just some monkey biz
+bundleID=com.basementlabs.monkeybiz
+version=0.001
+buildNumber=1
+imagePath=images/launcher
+launchSoundPath=sounds/launcher
