@@ -4,5 +4,15 @@
     "Lua.diagnostics.globals": ["playdate", "import"],
     "Lua.runtime.nonstandardSymbol": ["+=", "-=", "*=", "/="],
     "Lua.workspace.library": ["/home/nick/PlaydateSDK/CoreLibs"],
-    "Lua.workspace.preloadFileSize": 1000
+    "Lua.workspace.preloadFileSize": 1000,
+
+    "files.exclude": {
+      "**/.git": true,
+      "**/.svn": true,
+      "**/.hg": true,
+      "**/CVS": true,
+      "**/.DS_Store": true,
+      "**/Thumbs.db": true,
+      "**/.sentry-native": true
+    }
   }
