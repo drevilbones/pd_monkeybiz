@@ -3,6 +3,11 @@ import "CoreLibs/graphics"
 import "CoreLibs/sprites"
 import "CoreLibs/timer"
 
+import "element.lua"
+import "character.lua"
+import "enemy.lua"
+import "player.lua"
+
 local screen <const> = playdate.graphics
 local playerSprite = nil
 local synth = playdate.sound.synth.new(playdate.sound.kWaveSquare)
@@ -16,12 +21,7 @@ end
 local function loadGame()
 	playdate.display.setRefreshRate(30)
 
-	local playerImage = screen.image.new("images/smiley.png")
-	assert(playerImage)
-
-	playerSprite = screen.sprite.new(playerImage)
-	playerSprite:moveTo(200,120)
-	playerSprite:add()
+	playerSprite = Element("images/smiley.png", 200, 120, 3)
 end
 
 local function updateGame()
