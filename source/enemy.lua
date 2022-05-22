@@ -1,3 +1,5 @@
+import "character"
+
 class('Enemy').extends(Character)
 
 function Enemy:init()

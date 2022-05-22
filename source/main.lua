@@ -3,71 +3,32 @@ import "CoreLibs/graphics"
 import "CoreLibs/sprites"
 import "CoreLibs/timer"
 
-import "element.lua"
-import "character.lua"
-import "enemy.lua"
-import "player.lua"
+import "element"
+import "character"
+import "enemy"
+import "player"
 
 local screen <const> = playdate.graphics
-local playerSprite = nil
-local synth = playdate.sound.synth.new(playdate.sound.kWaveSquare)
-synth:setADSR(0,0.1,0,0)
-
-local function playBump()
-	synth:playNote(600)
-	synth:playNote(100)
-end
+local thePlayer = nil
 
 local function loadGame()
 	playdate.display.setRefreshRate(30)
 
-	--TODO: figure out how inheritance actually works so we can instantiate this as Player
-	playerSprite = Element("images/smiley.png") 
+	thePlayer = Player(200,200)
 end
 
 local function updateGame()
-	if playdate.buttonIsPressed(playdate.kButtonUp) then
-		if playerSprite.y > 16 then
-			playerSprite:moveBy(0, -2)
-		else
-			playBump()
-		end
-	end
-	if playdate.buttonIsPressed(playdate.kButtonRight) then
-		if playerSprite.x < 384 then
-			playerSprite:moveBy(2, 0)
-		else
-			playBump()
-		end
-	end
-	if playdate.buttonIsPressed(playdate.kButtonDown) then
-		if playerSprite.y < 224 then
-			playerSprite:moveBy(0, 2)
-		else
-			playBump()
-		end
-	end
-	if playdate.buttonIsPressed(playdate.kButtonLeft) then
-		if playerSprite.x > 16 then
-			playerSprite:moveBy(-2, 0)
-		else
-			playBump()
-		end
-	end
-	if playdate.buttonIsPressed(playdate.kButtonA) then
-		--
-	end
+
 end
 
 local function drawGame()
-	-- screen.clear()
 	screen.sprite.update()
 end
 
 loadGame()
 
 function playdate.update()
-	updateGame()
+	-- updateGame()
 	drawGame()
-	playdate.drawFPS(0,0) -- FPS widget
+	playdate.drawFPS(0,0)
 end
