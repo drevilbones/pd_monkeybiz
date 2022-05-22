@@ -21,7 +21,8 @@ end
 local function loadGame()
 	playdate.display.setRefreshRate(30)
 
-	playerSprite = Element("images/smiley.png", 200, 120, 3)
+	--TODO: figure out how inheritance actually works so we can instantiate this as Player
+	playerSprite = Element("images/smiley.png") 
 end
 
 local function updateGame()
