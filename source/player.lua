@@ -26,28 +26,42 @@ end
 
 function Player:update()
     Player.super.update(self)
+
+	if self.hp == 0 then
+		self:remove()
+	end
+
+	local moving = false
     
     if playdate.buttonIsPressed(playdate.kButtonUp) then
 		if self.y > 16 then
 			self:moveBy(0, -2)
 			self:setImage(self.anim:image())
+			moving = true
         end
-	elseif playdate.buttonIsPressed(playdate.kButtonRight) then
+	end
+	if playdate.buttonIsPressed(playdate.kButtonRight) then
 		if self.x < 384 then
 			self:moveBy(2, 0)
 			self:setImage(self.anim:image())
+			moving = true
         end
-	elseif playdate.buttonIsPressed(playdate.kButtonDown) then
+	end
+	if playdate.buttonIsPressed(playdate.kButtonDown) then
 		if self.y < 224 then
 			self:moveBy(0, 2)
-			self:setImage(self.anim:image(), gfx.kImageFlippedX)
+			self:setImage(self.anim:image())
+			moving = true
         end
-	elseif playdate.buttonIsPressed(playdate.kButtonLeft) then
+	end
+	if playdate.buttonIsPressed(playdate.kButtonLeft) then
 		if self.x > 16 then
 			self:moveBy(-2, 0)
 			self:setImage(self.anim:image(), gfx.kImageFlippedX)
+			moving = true
         end
-	else
+	end
+	if not moving then
 		self:setImage(self.sprSheet[1])
 	end
 
