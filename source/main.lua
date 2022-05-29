@@ -2,9 +2,8 @@ import "CoreLibs/object"
 import "CoreLibs/graphics"
 import "CoreLibs/sprites"
 import "CoreLibs/timer"
+import "CoreLibs/animation"
 
-import "element"
-import "character"
 import "enemy"
 import "player"
 

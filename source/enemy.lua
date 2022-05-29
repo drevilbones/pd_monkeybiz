@@ -1,4 +1,7 @@
-import "character"
+import "CoreLibs/sprites"
+import "CoreLibs/animation"
+
+local gfx = playdate.graphics
 
 class('Enemy').extends(Character)
 

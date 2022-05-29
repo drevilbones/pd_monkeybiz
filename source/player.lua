@@ -1,10 +1,27 @@
-import "character"
+import "CoreLibs/sprites"
+import "CoreLibs/animation"
 
-class('Player').extends(Character)
+local gfx = playdate.graphics
 
-function Player:init(x,y)
-    Player.super.init(self, "images/smiley.png", x, y, 3)
-    
+class('Player').extends(gfx.sprite)
+
+function Player:init()
+    Player.super.init(self)
+
+	self.hp = 3
+
+	self.sprSheet = gfx.imagetable.new("images/stick_sprite")
+	self.anim = gfx.animation.loop.new(100,self.sprSheet, true)
+    --self:secCollideRect(0,0,32,32)
+	self:setZIndex(1000)
+
+	self.sprStanding = 1
+	self.sprRunning = 2
+
+	self.anim.startFrame = self.sprRunning
+
+	self:moveTo(100,100)
+	self:add()
 end
 
 function Player:update()
@@ -13,21 +30,25 @@ function Player:update()
     if playdate.buttonIsPressed(playdate.kButtonUp) then
 		if self.y > 16 then
 			self:moveBy(0, -2)
+			self:setImage(self.anim:image())
         end
-	end
-	if playdate.buttonIsPressed(playdate.kButtonRight) then
+	elseif playdate.buttonIsPressed(playdate.kButtonRight) then
 		if self.x < 384 then
 			self:moveBy(2, 0)
+			self:setImage(self.anim:image())
         end
-	end
-	if playdate.buttonIsPressed(playdate.kButtonDown) then
+	elseif playdate.buttonIsPressed(playdate.kButtonDown) then
 		if self.y < 224 then
 			self:moveBy(0, 2)
+			self:setImage(self.anim:image(), gfx.kImageFlippedX)
         end
-	end
-	if playdate.buttonIsPressed(playdate.kButtonLeft) then
+	elseif playdate.buttonIsPressed(playdate.kButtonLeft) then
 		if self.x > 16 then
 			self:moveBy(-2, 0)
+			self:setImage(self.anim:image(), gfx.kImageFlippedX)
         end
+	else
+		self:setImage(self.sprSheet[1])
 	end
+
 end
