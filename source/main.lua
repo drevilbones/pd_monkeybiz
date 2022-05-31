@@ -6,28 +6,35 @@ import "CoreLibs/animation"
 
 import "enemy"
 import "player"
+import "level"
+import "camera"
 
-local screen <const> = playdate.graphics
-local thePlayer = nil
+local gfx <const> 	= playdate.graphics
+local thePlayer 	= nil
+local tiles 		= nil
+local map			= nil
+local camera		= {x = 0, y = 0}
 
 local function loadGame()
 	playdate.display.setRefreshRate(30)
 
-	thePlayer = Player(200,200)
-end
+	thePlayer = Player(100, 100)
 
-local function updateGame()
-
+	tiles = gfx.imagetable.new("images/bw_tiles")
+	map = gfx.tilemap.new()
+	map:setImageTable(tiles)
+	map:setTiles(level.layers[1].data, level.width)
 end
 
 local function drawGame()
-	screen.sprite.update()
+	gfx.sprite.update()
+	map:draw(0,0)
+
 end
 
-loadGame()
-
 function playdate.update()
-	-- updateGame()
 	drawGame()
 	playdate.drawFPS(0,0)
 end
+
+loadGame()

@@ -1,7 +1,7 @@
 import "CoreLibs/sprites"
 import "CoreLibs/animation"
 
-local gfx = playdate.graphics
+local gfx <const> = playdate.graphics
 
 class('Enemy').extends(Character)
 
