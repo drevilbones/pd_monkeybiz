@@ -13,7 +13,6 @@ local gfx <const> 	= playdate.graphics
 local thePlayer 	= nil
 local tiles 		= nil
 local map			= nil
-local camera		= {x = 0, y = 0}
 
 local function loadGame()
 	playdate.display.setRefreshRate(30)
@@ -24,12 +23,14 @@ local function loadGame()
 	map = gfx.tilemap.new()
 	map:setImageTable(tiles)
 	map:setTiles(level.layers[1].data, level.width)
+
+	print("loadgame: ", thePlayer.x, thePlayer.y)
 end
 
 local function drawGame()
 	gfx.sprite.update()
+	moveCamera(thePlayer)
 	map:draw(0,0)
-
 end
 
 function playdate.update()

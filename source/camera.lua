@@ -1,8 +1,10 @@
-class('Camera').extends()
+import "CoreLibs/graphics"
+
+import "player"
 
 local gfx <const> = playdate.graphics
 
---TODO: I need a camera to my eye
---      to my eye, reminding
---      which lies have I been hiding
----     which echoes belong
+function moveCamera(focus)
+    gfx.setDrawOffset()
+    --print(gfx.getDrawOffset())
+end

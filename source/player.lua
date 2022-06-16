@@ -31,29 +31,29 @@ function Player:update()
 		self:remove()
 	end
 
-	local moving = false
+	local runnning = false
 
     if playdate.buttonIsPressed(playdate.kButtonUp) then
 		self:moveBy(0, -2)
 		self:setImage(self.anim:image())
-		moving = true
+		runnning = true
 	end
 	if playdate.buttonIsPressed(playdate.kButtonDown) then
 		self:moveBy(0, 2)
 		self:setImage(self.anim:image())
-		moving = true
+		runnning = true
 	end	
 	if playdate.buttonIsPressed(playdate.kButtonRight) then
 		self:moveBy(2, 0)
 		self:setImage(self.anim:image())
-		moving = true
+		runnning = true
 	end
 	if playdate.buttonIsPressed(playdate.kButtonLeft) then
 		self:moveBy(-2, 0)
 		self:setImage(self.anim:image(), gfx.kImageFlippedX)
-		moving = true
+		runnning = true
 	end
-	if not moving then
-		self:setImage(self.sprSheet[1])
+	if not running then
+		self:setImage(self.sprSheet[sprStanding])
 	end
 end

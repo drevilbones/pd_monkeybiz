@@ -12,5 +12,4 @@ end
 
 function Enemy:update()
     Enemy.super.update(self)
-    
 end
