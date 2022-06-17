@@ -12,7 +12,7 @@ function Player:init(x, y)
 
 	self.sprSheet = gfx.imagetable.new("images/stick_sprite")
 	self.anim = gfx.animation.loop.new(100,self.sprSheet, true)
-	self:setZIndex(1000)
+	self:setZIndex(32767)
 
 	self.sprStanding = 1
 	self.sprRunning = 2
@@ -31,29 +31,29 @@ function Player:update()
 		self:remove()
 	end
 
-	local runnning = false
+	local running = false
 
     if playdate.buttonIsPressed(playdate.kButtonUp) then
 		self:moveBy(0, -2)
 		self:setImage(self.anim:image())
-		runnning = true
+		running = true
 	end
 	if playdate.buttonIsPressed(playdate.kButtonDown) then
 		self:moveBy(0, 2)
 		self:setImage(self.anim:image())
-		runnning = true
+		running = true
 	end	
 	if playdate.buttonIsPressed(playdate.kButtonRight) then
 		self:moveBy(2, 0)
 		self:setImage(self.anim:image())
-		runnning = true
+		running = true
 	end
 	if playdate.buttonIsPressed(playdate.kButtonLeft) then
 		self:moveBy(-2, 0)
 		self:setImage(self.anim:image(), gfx.kImageFlippedX)
-		runnning = true
+		running = true
 	end
 	if not running then
-		self:setImage(self.sprSheet[sprStanding])
+		self:setImage(self.sprSheet[self.sprStanding])
 	end
 end
